@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercícios JS</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #000;
+      font-family: sans-serif;
+    }
+
+    button {
+      background-color: #fff;
+      color: #000;
+      border: none;
+      padding: 12px 24px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <button onclick="iniciarComandos()">Iniciar Comandos em JS</button>
+
+  <script>
+    function MAIOR_MENOR(a, b, c, d, e) {
+      const arr = [a, b, c, d, e];
+      return {
+        maior: Math.max(...arr),
+        menor: Math.min(...arr)
+      };
+    }
+
+    function VOGAL(c) {
+      return /[aeiouAEIOU]/.test(c) ? 1 : 0;
+    }
+
+    function LIMITES(li, ls) {
+      const evens = [];
+      let sum = 0;
+      for (let i = li + 1; i < ls; i++) {
+        if (i % 2 === 0) {
+          evens.push(i);
+          sum += i;
+        }
+      }
+      return { evens, sum };
+    }
+
+    function ORDEM(a, b, c) {
+      return [a, b, c].sort((x, y) => x - y);
+    }
+
+    function POSITIVO_NEGATIVO(x) {
+      return x >= 0;
+    }
+
+    function PAR_IMPAR(x) {
+      return x % 2 === 0;
+    }
+
+    function iniciarComandos() {
+      const cinco = prompt('Digite 5 valores inteiros separados por vírgula:');
+      const nums = cinco.split(',').map(n => parseInt(n, 10));
+      const { maior, menor } = MAIOR_MENOR(...nums);
+      alert(`1) Maior: ${maior}\n   Menor: ${menor}`);
+
+      const ch = prompt('Digite um único caractere:');
+      const isVogal = VOGAL(ch) === 1 ? 'Sim' : 'Não';
+      alert(`2) É vogal? ${isVogal}`);
+
+      const limites = prompt('Digite limite inferior e superior (crescentes), separados por vírgula:');
+      const [li, ls] = limites.split(',').map(n => parseInt(n, 10));
+      const { evens, sum } = LIMITES(li, ls);
+      alert(`3) Pares entre ${li} e ${ls}:\n   ${evens.join(', ')}\n   Somatório: ${sum}`);
+
+      const tres = prompt('Digite 3 valores inteiros separados por vírgula:');
+      const trio = tres.split(',').map(n => parseInt(n, 10));
+      alert(`4) Ordem crescente:\n   ${ORDEM(...trio).join(', ')}`);
+
+      const x1 = parseInt(prompt('Digite um inteiro para verificar positivo/negativo:'), 10);
+      const posNeg = POSITIVO_NEGATIVO(x1) ? 'Positivo ou zero' : 'Negativo';
+      alert(`5) Valor ${x1} é: ${posNeg}`);
+
+      const x2 = parseInt(prompt('Digite um inteiro para verificar par/ímpar:'), 10);
+      const parImpar = PAR_IMPAR(x2) ? 'Par' : 'Ímpar';
+      alert(`6) Valor ${x2} é: ${parImpar}`);
+    }
+  </script>
+</body>
+</html>
